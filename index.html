@@ -3,525 +3,1173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Boitumelo Thobejane - Software Developer Portfolio showcasing real-world projects in employee management, education, accommodation, restaurant, and school systems.">
-    <meta name="keywords" content="Boitumelo Thobejane, Software Developer, Portfolio, Web Development, React, Node.js, Python, Employee Management, Educational Apps, Restaurant Website, School Website">
-    <meta name="author" content="Boitumelo Thobejane">
-    <title>Boitumelo Thobejane - Software Developer Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Boitumelo Matome Thobejane — Junior Software Engineer in Johannesburg, South Africa. Full-stack work in Java, Spring Boot, React, Python and PHP across three production applications.">
+    <meta name="author" content="Boitumelo Matome Thobejane">
+    <meta name="theme-color" content="#07071a">
+    <title>Boitumelo Thobejane · Junior Software Engineer</title>
+
+    <meta property="og:title" content="Boitumelo Thobejane · Junior Software Engineer">
+    <meta property="og:description" content="Three production applications, 10+ client websites, and a terminal you can actually type in.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://myportifolioboitumelo.netlify.app">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: #0a0a23;
-            color: #e0e0e0;
-            margin: 0;
-            overflow-x: hidden;
+        :root{
+            --bg:#07071a; --bg-2:#0b0b22; --panel:#10102b;
+            --border:rgba(125,135,255,.15); --border-strong:rgba(125,135,255,.34);
+            --accent:#7b68ee; --accent-2:#00ddeb; --accent-3:#c792ea;
+            --text:#e8ecff; --muted:#8e97c4; --dim:#646d99;
+            --good:#4ade80; --warn:#ffb454;
+            --mono:'JetBrains Mono',ui-monospace,monospace; --sans:'Space Grotesk',system-ui,sans-serif;
+            --r:.7rem;
         }
-        .smooth-scroll {
-            scroll-behavior: smooth;
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;scroll-padding-top:72px}
+        body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        img{max-width:100%;display:block}
+        a{color:inherit}
+        button{font-family:inherit}
+        ::selection{background:rgba(123,104,238,.4);color:#fff}
+        :focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+        @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+        /* background */
+        .bg{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+        .orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.38}
+        .orb-1{width:480px;height:480px;background:#4c3dbb;top:-170px;left:-130px}
+        .orb-2{width:430px;height:430px;background:#0a6b8f;top:42%;right:-190px}
+        .orb-3{width:400px;height:400px;background:#5b2f8a;bottom:-200px;left:26%}
+        @media (prefers-reduced-motion:no-preference){
+            .orb{animation:drift 24s ease-in-out infinite}
+            .orb-2{animation-delay:-8s}.orb-3{animation-delay:-16s}
         }
-        .project-card, .experience-card {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            background: linear-gradient(145deg, #1e1e3f, #2a2a5e);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+        @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(38px,-34px) scale(1.06)}66%{transform:translate(-28px,28px) scale(.95)}}
+        .bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.028) 1px,transparent 1px);background-size:28px 28px}
+
+        .progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:1200;background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 0 12px rgba(0,221,235,.7)}
+
+        /* tab bar */
+        .tabbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(6,6,20,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+        .tabbar-row{display:flex;align-items:stretch;max-width:1280px;margin:0 auto}
+        .brand{display:flex;align-items:center;gap:.55rem;padding:0 1.05rem;text-decoration:none;border-right:1px solid var(--border);flex-shrink:0}
+        .brand-mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:.7rem;color:#0a0a1e}
+        .brand-name{font-family:var(--mono);font-size:.78rem}
+        .tabs{display:flex;overflow-x:auto;scrollbar-width:none;flex:1}
+        .tabs::-webkit-scrollbar{display:none}
+        .tab{display:flex;align-items:center;gap:.45rem;padding:0 1rem;height:54px;font-family:var(--mono);font-size:.77rem;color:var(--muted);text-decoration:none;white-space:nowrap;border-right:1px solid var(--border);position:relative;transition:color .2s,background .2s}
+        .tab:hover{color:#fff;background:rgba(255,255,255,.035)}
+        .tab.active{color:#fff;background:var(--panel)}
+        .tab.active::after{content:'';position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+        .ext{font-size:.58rem;font-weight:700;padding:.08rem .34rem;border-radius:.3rem}
+        .e1{background:rgba(123,104,238,.25);color:#c3b8ff}
+        .e2{background:rgba(0,221,235,.2);color:#7fe9f2}
+        .e3{background:rgba(255,180,84,.2);color:#ffcf8a}
+        .e4{background:rgba(74,222,128,.2);color:#8ff0b0}
+        .e5{background:rgba(255,255,255,.12);color:#cfd6ff}
+        .e6{background:rgba(255,120,180,.2);color:#ffb0d6}
+        .kbd-hint{display:flex;align-items:center;gap:.4rem;padding:0 1rem;font-family:var(--mono);font-size:.7rem;color:var(--dim);border:0;border-left:1px solid var(--border);background:none;cursor:pointer;flex-shrink:0;transition:color .2s}
+        .kbd-hint:hover{color:var(--accent-2)}
+        kbd{font-family:var(--mono);font-size:.65rem;border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:.3rem;padding:.08rem .35rem;color:var(--muted)}
+        @media (max-width:760px){.brand-name{display:none}.kbd-hint{display:none}.tab{padding:0 .75rem;font-size:.72rem}}
+
+        /* layout */
+        .section{padding:6.5rem 0;position:relative}
+        .wrap{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+        .fh{font-family:var(--mono);font-size:.8rem;color:var(--dim);margin-bottom:.5rem}
+        .fh b{color:var(--text);font-weight:500}
+        .fc{font-family:var(--mono);font-size:.84rem;color:var(--muted);margin-bottom:2rem}
+
+        .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:var(--r);padding:.82rem 1.6rem;font-weight:600;font-size:.91rem;text-decoration:none;cursor:pointer;border:none;transition:transform .25s,box-shadow .25s,border-color .25s,background .25s}
+        .btn-p{background:linear-gradient(120deg,#6d5dfc,#00c2ff);color:#fff;box-shadow:0 10px 24px -11px rgba(90,110,255,.9)}
+        .btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 32px -11px rgba(0,194,255,.7)}
+        .btn-g{background:transparent;color:var(--text);border:1.5px solid var(--border-strong)}
+        .btn-g:hover{border-color:var(--accent-2);background:rgba(120,140,255,.07);transform:translateY(-2px)}
+
+        /* hero */
+        .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 0 4.5rem}
+        .hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:3.2rem;align-items:center}
+        @media (prefers-reduced-motion:no-preference){
+            .in-up{animation:inup .85s cubic-bezier(.2,.8,.2,1) both}
+            .in-up.d2{animation-delay:.14s}
+            @keyframes inup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
         }
-        .project-card:hover, .experience-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(81, 99, 255, 0.3);
+        .hero h1{font-size:clamp(2.3rem,5.2vw,3.7rem);font-weight:700;line-height:1.08;letter-spacing:-.032em;margin:.4rem 0 1.15rem}
+        .hero .lead{color:#b8c0e6;font-size:1.06rem;max-width:34ch;margin-bottom:1.9rem}
+        .hero-cta{display:flex;flex-wrap:wrap;gap:.85rem}
+        .live{display:flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-top:1.8rem}
+        .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 10px var(--good);flex-shrink:0}
+        @media (prefers-reduced-motion:no-preference){.dot{animation:blip 2.4s ease-in-out infinite}}
+        @keyframes blip{0%,100%{opacity:1}50%{opacity:.35}}
+        @media (max-width:1000px){.hero-grid{grid-template-columns:1fr;gap:2.5rem}.hero{padding-top:6.5rem}}
+
+        /* terminal */
+        .term{background:linear-gradient(165deg,rgba(17,17,44,.97),rgba(8,8,26,.99));border:1px solid var(--border-strong);border-radius:.95rem;overflow:hidden;box-shadow:0 40px 80px -34px rgba(0,0,0,.95),0 0 70px -40px rgba(0,221,235,.5)}
+        .term-top{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+        .term-top i{width:10px;height:10px;border-radius:50%;display:block}
+        .term-title{margin-left:auto;font-family:var(--mono);font-size:.71rem;color:var(--dim)}
+        .term-body{height:430px;overflow-y:auto;padding:1.1rem 1.25rem 1.3rem;font-family:var(--mono);font-size:.815rem;line-height:1.75;cursor:text}
+        .term-body::-webkit-scrollbar{width:7px}
+        .term-body::-webkit-scrollbar-thumb{background:rgba(123,104,238,.45);border-radius:6px}
+        .tl{white-space:pre-wrap;word-break:break-word;color:#c5cdf5;min-height:1.2em}
+        .tl.cmd{color:#fff}
+        .tl.ok{color:var(--good)}
+        .tl.acc{color:var(--accent-2)}
+        .tl.pur,.pur{color:var(--accent-3)}
+        .tl.warn{color:var(--warn)}
+        .tl.dim{color:var(--dim)}
+        .tl a{color:#7dd3fc;text-decoration:underline;text-underline-offset:2px}
+        .prompt{color:var(--accent-2)}
+        .prompt .u{color:var(--accent-3)}
+        .term-input-row{display:flex;align-items:baseline;gap:.5rem}
+        .term-input{flex:1;background:none;border:none;outline:none;color:#fff;font-family:var(--mono);font-size:.815rem;caret-color:var(--accent-2);min-width:0}
+        .term-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.7rem 1rem;border-top:1px solid var(--border);background:rgba(255,255,255,.015)}
+        .chip{font-family:var(--mono);font-size:.68rem;color:var(--muted);background:rgba(123,104,238,.12);border:1px solid rgba(123,104,238,.3);padding:.22rem .6rem;border-radius:.35rem;cursor:pointer;transition:all .2s}
+        .chip:hover{color:#fff;background:rgba(123,104,238,.3);border-color:var(--accent)}
+        @media (max-width:520px){.term-body{height:340px;font-size:.75rem}.term-input{font-size:.75rem}}
+
+        /* metrics */
+        .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:3.5rem}
+        .metric{background:var(--bg-2);padding:1.3rem 1.4rem}
+        .metric b{display:block;font-family:var(--mono);font-size:1.65rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+        .metric span{font-size:.79rem;color:var(--muted)}
+        @media (max-width:760px){.metrics{grid-template-columns:repeat(2,1fr)}}
+
+        /* about */
+        .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem;align-items:start}
+        .portrait-wrap{position:relative;max-width:290px}
+        .portrait-ring{position:absolute;inset:-12px;border-radius:1.3rem;background:conic-gradient(from 0deg,var(--accent),var(--accent-2),var(--accent));filter:blur(18px);opacity:.42}
+        @media (prefers-reduced-motion:no-preference){.portrait-ring{animation:rot 14s linear infinite}}
+        @keyframes rot{to{transform:rotate(360deg)}}
+        .portrait{position:relative;width:100%;aspect-ratio:1;border-radius:1.1rem;object-fit:cover;border:3px solid rgba(125,211,252,.28);box-shadow:0 25px 50px -20px rgba(0,0,0,.9);background:var(--panel)}
+        .about p{color:#c3cbf0;margin-bottom:1rem;max-width:68ch}
+        .edu{margin-top:1.8rem;border-left:2px solid var(--border-strong);padding-left:1.1rem}
+        .edu-item{margin-bottom:.9rem}
+        .edu-item b{display:block;font-size:.95rem;font-weight:600}
+        .edu-item span{font-family:var(--mono);font-size:.78rem;color:var(--dim)}
+        @media (max-width:880px){.about{grid-template-columns:1fr}.portrait-wrap{max-width:210px}}
+
+        /* skills */
+        .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+        .skill-block{background:linear-gradient(160deg,rgba(24,24,62,.6),rgba(14,14,36,.85));border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.5rem;transition:border-color .3s,transform .3s}
+        .skill-block:hover{border-color:var(--border-strong);transform:translateY(-4px)}
+        .skill-block h3{font-family:var(--mono);font-size:.82rem;color:var(--accent-2);margin-bottom:.9rem;font-weight:600}
+        .pills{display:flex;flex-wrap:wrap;gap:.4rem}
+        .pill{display:inline-block;font-family:var(--mono);font-size:.72rem;color:#c2cbf5;background:rgba(123,104,238,.13);border:1px solid rgba(123,104,238,.27);padding:.24rem .6rem;border-radius:.38rem}
+        @media (max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr)}}
+        @media (max-width:560px){.skill-grid{grid-template-columns:1fr}}
+
+        /* case studies */
+        .cases{display:flex;flex-direction:column;gap:1.1rem}
+        .case{background:linear-gradient(160deg,rgba(24,24,62,.55),rgba(13,13,34,.88));border:1px solid var(--border);border-radius:.95rem;overflow:hidden;transition:border-color .3s}
+        .case[open]{border-color:var(--border-strong)}
+        .case summary{list-style:none;cursor:pointer;padding:1.5rem 1.7rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.1rem;align-items:center}
+        .case summary::-webkit-details-marker{display:none}
+        .case-idx{font-family:var(--mono);font-size:.78rem;color:var(--dim)}
+        .case-h h3{font-size:1.15rem;font-weight:600;margin-bottom:.25rem}
+        .case-h p{font-size:.88rem;color:var(--muted);max-width:62ch}
+        .case-badges{display:flex;align-items:center;gap:.6rem}
+        .badge-live{font-family:var(--mono);font-size:.67rem;color:#8ff0b0;background:rgba(74,222,128,.13);border:1px solid rgba(74,222,128,.35);padding:.2rem .55rem;border-radius:.35rem;white-space:nowrap}
+        .badge-client{font-family:var(--mono);font-size:.67rem;color:#ffcf8a;background:rgba(255,180,84,.13);border:1px solid rgba(255,180,84,.35);padding:.2rem .55rem;border-radius:.35rem;white-space:nowrap}
+        .badge-final{font-family:var(--mono);font-size:.67rem;color:#c3b8ff;background:rgba(123,104,238,.18);border:1px solid rgba(123,104,238,.4);padding:.2rem .55rem;border-radius:.35rem;white-space:nowrap}
+        .chev{color:var(--muted);transition:transform .3s}
+        .case[open] .chev{transform:rotate(180deg)}
+        .case-body{padding:1.4rem 1.7rem 1.7rem;border-top:1px solid var(--border)}
+        .case-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-bottom:.4rem}
+        .case-col h4{font-family:var(--mono);font-size:.71rem;color:var(--accent-2);margin-bottom:.55rem;font-weight:600}
+        .case-col p,.case-col li{font-size:.87rem;color:#b9c1e8}
+        .case-col ul{list-style:none}
+        .case-col li{padding-left:1.05rem;position:relative;margin-bottom:.35rem}
+        .case-col li::before{content:'\25B8';position:absolute;left:0;color:var(--accent)}
+        .case-foot{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid var(--border)}
+        .lnk{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.8rem;color:#7dd3fc;text-decoration:none;transition:gap .25s,color .25s}
+        .lnk:hover{gap:.65rem;color:#a5f3fc}
+        @media (max-width:820px){
+            .case summary{grid-template-columns:1fr auto;padding:1.2rem 1.25rem}
+            .case-idx{display:none}
+            .case-body{padding-left:1.25rem;padding-right:1.25rem}
+            .case-cols{grid-template-columns:1fr;gap:1.1rem}
         }
-        .gradient-text {
-            background: linear-gradient(45deg, #7b68ee, #00ddeb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        /* Header Styling */
-        .header {
-            background: linear-gradient(90deg, rgba(10, 10, 35, 0.95), rgba(30, 30, 63, 0.95));
-            backdrop-filter: blur(12px);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            top: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-        .header.scrolled {
-            background: rgba(10, 10, 35, 1);
-            transform: translateY(0);
-        }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-        }
-        .header-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #7b68ee, #00ddeb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .header-logo:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-        .nav-menu {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-        .nav-link {
-            position: relative;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #e0e0e0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.5rem 0;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(to right, #7b68ee, #00ddeb);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: #00ddeb;
-            transform: translateY(-2px);
-        }
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 35, 0.98);
-            padding: 1.5rem;
-            flex-direction: column;
-            gap: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .mobile-menu.active {
-            display: flex;
-        }
-        .mobile-menu .nav-link {
-            font-size: 1.2rem;
-            padding: 0.75rem;
-            text-align: center;
-        }
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            .mobile-menu-toggle {
-                display: block;
-            }
-        }
-        .hero-bg {
-            background: linear-gradient(135deg, #0a0a23 0%, #1e1e3f 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(81, 99, 255, 0.2), transparent 70%);
-            z-index: 0;
-        }
-        .section-bg {
-            background: linear-gradient(135deg, #0f0f2d 0%, #1e1e3f 100%);
-        }
-        .cta-button {
-            background: linear-gradient(45deg, #7b68ee, #00ddeb);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 9999px;
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-            color: #fff;
-        }
-        .cta-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 221, 235, 0.4);
-        }
-        .form-input {
-            background: #1e1e3f;
-            border: 1px solid rgba(123, 104, 238, 0.3);
-            color: #e0e0e0;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 9999px;
-            padding: 0.75rem 1.5rem;
-        }
-        .form-input:focus {
-            border-color: #00ddeb;
-            box-shadow: 0 0 10px rgba(0, 221, 235, 0.3);
-            outline: none;
-        }
-        .form-textarea {
-            border-radius: 12px;
-            padding: 1rem;
-            background: #1e1e3f;
-            border: 1px solid rgba(123, 104, 238, 0.3);
-            color: #e0e0e0;
-        }
-        .form-textarea:focus {
-            border-color: #00ddeb;
-            box-shadow: 0 0 10px rgba(0, 221, 235, 0.3);
-            outline: none;
-        }
-        .form-label {
-            color: #e0e0e0;
-            font-weight: 500;
-        }
-        .contact-button {
-            background: linear-gradient(45deg, #7b68ee, #00ddeb);
-            color: #fff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 9999px;
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-        }
-        .contact-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 221, 235, 0.4);
-        }
-        .social-icon {
-            transition: transform 0.3s ease, color 0.3s ease;
-            color: #e0e0e0;
-        }
-        .social-icon:hover {
-            transform: scale(1.2);
-            color: #00ddeb;
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e1e3f;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(#7b68ee, #00ddeb);
-            border-radius: 4px;
-        }
+
+        /* experience */
+        .commits{position:relative;padding-left:2.1rem}
+        .commits::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent-2),transparent)}
+        .commit{position:relative;margin-bottom:2.4rem}
+        .commit::before{content:'';position:absolute;left:-2.1rem;top:.3rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent-2);box-shadow:0 0 0 4px rgba(0,221,235,.11)}
+        .commit-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:.65rem;margin-bottom:.25rem}
+        .hash{font-family:var(--mono);font-size:.84rem;color:var(--accent-2)}
+        .commit-h b{font-size:1.06rem;font-weight:600}
+        .when{margin-left:auto;font-family:var(--mono);font-size:.7rem;color:var(--muted);background:rgba(60,70,160,.22);border:1px solid var(--border);padding:.2rem .65rem;border-radius:.35rem;white-space:nowrap}
+        .where{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-bottom:.9rem}
+        .diff{list-style:none}
+        .diff li{font-family:var(--mono);font-size:.845rem;color:#c3e5d0;padding-left:1.35rem;position:relative;margin-bottom:.38rem;line-height:1.62;max-width:88ch}
+        .diff li::before{content:'+';position:absolute;left:0;color:var(--good);font-weight:700}
+
+        /* freelance grid */
+        .fl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+        .fl{background:linear-gradient(160deg,rgba(24,24,62,.55),rgba(13,13,34,.86));border:1px solid var(--border);border-radius:.9rem;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
+        .fl:hover{border-color:var(--border-strong);transform:translateY(-5px)}
+        .fl-thumb{position:relative;height:172px;overflow:hidden;background:linear-gradient(140deg,#23235a,#15153a)}
+        .fl-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+        .fl:hover .fl-thumb img{transform:scale(1.06)}
+        .fl-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(7,7,26,.93))}
+        .fl-body{padding:1.15rem 1.3rem 1.4rem;display:flex;flex-direction:column;flex:1}
+        .fl-path{font-family:var(--mono);font-size:.7rem;color:var(--dim);margin-bottom:.35rem}
+        .fl-body h3{font-size:1rem;font-weight:600;margin-bottom:.45rem}
+        .fl-body p{font-size:.85rem;color:var(--muted);flex:1;margin-bottom:.85rem}
+        .fl-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem}
+        .fl-tag{font-family:var(--mono);font-size:.64rem;color:#b6c2ff;background:rgba(123,104,238,.13);border:1px solid rgba(123,104,238,.26);padding:.18rem .5rem;border-radius:.32rem}
+        .fl-links{display:flex;flex-wrap:wrap;gap:.9rem}
+        @media (max-width:1000px){.fl-grid{grid-template-columns:repeat(2,1fr)}}
+        @media (max-width:640px){.fl-grid{grid-template-columns:1fr}}
+
+        /* client list (10+ local sites) */
+        .client-block{background:linear-gradient(160deg,rgba(24,24,62,.55),rgba(13,13,34,.86));border:1px solid var(--border);border-radius:.95rem;padding:1.6rem 1.8rem;margin-top:1.2rem}
+        .client-block h3{font-family:var(--mono);font-size:.95rem;font-weight:600;color:var(--accent-2);margin-bottom:1rem}
+        .client-block p{color:#b9c1e8;font-size:.9rem;margin-bottom:1rem}
+        .client-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+        .client-list li{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;padding:.85rem 1rem;border:1px solid var(--border);border-radius:.6rem;background:rgba(7,7,22,.55);transition:border-color .25s,background .25s}
+        .client-list li:hover{border-color:var(--border-strong);background:rgba(7,7,22,.85)}
+        .client-name{font-weight:600;font-size:.93rem;color:#e8ecff}
+        .client-note{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+        .client-status{margin-left:auto;font-family:var(--mono);font-size:.68rem;padding:.2rem .6rem;border-radius:.35rem;white-space:nowrap}
+        .st-approved{color:#8ff0b0;background:rgba(74,222,128,.13);border:1px solid rgba(74,222,128,.35)}
+        .st-pending{color:#ffcf8a;background:rgba(255,180,84,.13);border:1px solid rgba(255,180,84,.35)}
+        .st-discussion{color:#9aa3c7;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+        @media (max-width:640px){.client-status{margin-left:0}}
+
+        /* contact */
+        .contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:2.5rem;align-items:start}
+        .contact .intro{color:var(--muted);margin-bottom:1.5rem;max-width:34ch}
+        .cmdline{display:flex;align-items:baseline;gap:.55rem;padding:.78rem 0;border-bottom:1px solid var(--border);text-decoration:none;font-family:var(--mono);font-size:.855rem;transition:color .25s,padding-left .25s;word-break:break-all}
+        .cmdline:hover{color:#a5f3fc;padding-left:.4rem}
+        .cmdline .p{color:var(--accent-2);flex-shrink:0}
+        .refs{margin-top:1.6rem;font-family:var(--mono);font-size:.76rem;color:var(--dim);line-height:1.9}
+        .form-card{background:linear-gradient(160deg,rgba(24,24,62,.65),rgba(14,14,36,.9));border:1px solid var(--border);border-radius:1rem;padding:1.9rem}
+        .row{margin-bottom:1.05rem}
+        .lbl{display:block;font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--muted);margin-bottom:.45rem}
+        .lbl i{color:var(--dim);font-style:normal}
+        .inp,.ta{width:100%;background:rgba(7,7,22,.85);border:1px solid var(--border-strong);color:var(--text);font-family:var(--mono);font-size:.875rem;padding:.78rem 1rem;border-radius:.55rem;transition:border-color .25s,box-shadow .25s}
+        .ta{resize:vertical;min-height:120px}
+        .inp::placeholder,.ta::placeholder{color:var(--dim)}
+        .inp:focus,.ta:focus{outline:none;border-color:var(--accent-2);box-shadow:0 0 0 3px rgba(0,221,235,.14)}
+        .fstatus{font-family:var(--mono);font-size:.81rem;margin-top:.95rem;min-height:1.3em;color:var(--muted)}
+        .fstatus.ok{color:var(--good)}
+        .fstatus.err{color:#ff8f8f}
+        @media (max-width:880px){.contact{grid-template-columns:1fr}}
+
+        /* status bar */
+        .statusbar{border-top:1px solid var(--border);padding:1.05rem 0}
+        .sb{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.75rem;color:var(--dim)}
+        .sb a{color:var(--muted);text-decoration:none}
+        .sb a:hover{color:#7dd3fc}
+        .sb .sep{opacity:.45}
+
+        /* command palette */
+        .palette{position:fixed;inset:0;z-index:1500;display:none;background:rgba(3,3,14,.72);backdrop-filter:blur(6px);padding:14vh 1.2rem 1.2rem}
+        .palette.open{display:block}
+        .pal-box{max-width:540px;margin:0 auto;background:linear-gradient(160deg,rgba(21,21,52,.99),rgba(10,10,30,.99));border:1px solid var(--border-strong);border-radius:.85rem;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.95)}
+        .pal-in{width:100%;background:none;border:none;border-bottom:1px solid var(--border);outline:none;color:#fff;font-family:var(--mono);font-size:.95rem;padding:1.05rem 1.25rem}
+        .pal-in::placeholder{color:var(--dim)}
+        .pal-list{max-height:320px;overflow-y:auto;padding:.4rem}
+        .pal-item{display:flex;align-items:center;gap:.7rem;padding:.7rem .9rem;border-radius:.5rem;font-family:var(--mono);font-size:.84rem;color:var(--muted);cursor:pointer}
+        .pal-item .tag{margin-left:auto;font-size:.66rem;color:var(--dim)}
+        .pal-item.sel{background:rgba(123,104,238,.25);color:#fff}
+        .pal-empty{padding:1.2rem;font-family:var(--mono);font-size:.82rem;color:var(--dim);text-align:center}
+
+        .totop{position:fixed;right:1.3rem;bottom:1.3rem;z-index:900;width:44px;height:44px;border-radius:.65rem;border:1px solid var(--border);background:linear-gradient(135deg,#6d5dfc,#00c2ff);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;box-shadow:0 12px 26px -11px rgba(0,194,255,.8)}
+        .totop.show{opacity:1;pointer-events:auto;transform:none}
+        .totop:hover{transform:translateY(-3px)}
+
+        ::-webkit-scrollbar{width:9px}
+        ::-webkit-scrollbar-track{background:#08081c}
+        ::-webkit-scrollbar-thumb{background:linear-gradient(#6d5dfc,#00c2ff);border-radius:10px}
     </style>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
 </head>
-<body class="smooth-scroll">
-<!-- Header -->
-<header class="header" aria-label="Main navigation">
-    <div class="header-container">
-        <a href="#home" class="header-logo">Boitumelo Thobejane</a>
-        <nav class="nav-menu">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
+<body>
+
+<div class="bg" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="tabbar">
+    <div class="tabbar-row">
+        <a href="#home" class="brand"><span class="brand-mark">BT</span><span class="brand-name">boitumelo</span></a>
+        <nav class="tabs" aria-label="Sections">
+            <a href="#home" class="tab" data-s="home"><span class="ext e1">tsx</span>home</a>
+            <a href="#about" class="tab" data-s="about"><span class="ext e2">md</span>about</a>
+            <a href="#skills" class="tab" data-s="skills"><span class="ext e3">json</span>skills</a>
+            <a href="#work" class="tab" data-s="work"><span class="ext e5">dir</span>work</a>
+            <a href="#experience" class="tab" data-s="experience"><span class="ext e4">log</span>experience</a>
+            <a href="#contact" class="tab" data-s="contact"><span class="ext e6">sh</span>contact</a>
         </nav>
-        <div class="mobile-menu-toggle">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-        </div>
-        <nav class="mobile-menu">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
+        <button class="kbd-hint" id="palBtn" aria-label="Open command palette"><kbd>Ctrl</kbd><kbd>K</kbd></button>
     </div>
 </header>
 
-<!-- Hero Section -->
-<section id="home" class="min-h-screen flex items-center hero-bg" aria-labelledby="hero-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 id="hero-heading" class="text-4xl md:text-6xl font-bold gradient-text mb-4">Hey, I'm Boitumelo Thobejane</h2>
-        <p class="text-xl md:text-2xl text-gray-300 mb-6">Crafting innovative digital solutions with passion</p>
-        <a href="#projects" class="cta-button inline-block font-semibold">Discover My Work</a>
+<section id="home" class="hero">
+    <div class="wrap">
+        <div class="hero-grid">
+            <div class="in-up">
+                <div class="fh">~/boitumelo/<b>home.tsx</b></div>
+                <h1>I build software that people actually open every day.</h1>
+                <p class="lead">Junior software engineer in Johannesburg. Three production applications, 10+ client websites, and a habit of shipping things all the way to deployment.</p>
+                <div class="hero-cta">
+                    <a href="#work" class="btn btn-p">See the work</a>
+                    <a href="/Boitumelo_Thobejane_CV.pdf" download class="btn btn-g">Download CV</a>
+                </div>
+                <div class="live"><span class="dot"></span>open to junior engineer &amp; developer roles</div>
+            </div>
+
+            <div class="in-up d2">
+                <div class="term">
+                    <div class="term-top">
+                        <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+                        <span class="term-title">boitumelo@portfolio: ~</span>
+                    </div>
+                    <div class="term-body" id="termBody">
+                        <div id="termOut"></div>
+                        <div class="term-input-row" id="inputRow" style="display:none">
+                            <span class="prompt"><span class="u">visitor</span>@boitumelo:~$</span>
+                            <input class="term-input" id="termIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input">
+                        </div>
+                    </div>
+                    <div class="term-chips" id="chips" aria-label="Suggested commands"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric"><b>3</b><span>production apps shipped</span></div>
+            <div class="metric"><b>10+</b><span>client websites delivered</span></div>
+            <div class="metric"><b>~2yr</b><span>professional experience</span></div>
+            <div class="metric"><b>1</b><span>live at gradegenius.org</span></div>
+        </div>
     </div>
 </section>
 
-<!-- About Section -->
-<section id="about" class="py-20 section-bg" aria-labelledby="about-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="about-heading" class="text-3xl font-bold text-center mb-12 gradient-text">About Me</h2>
-        <div class="flex flex-col md:flex-row items-center gap-12">
-            <img src="/Profile_Picture.jpg" alt="Boitumelo Thobejane portrait" class="w-48 h-48 md:w-72 md:h-72 rounded-full object-cover shadow-xl border-4 border-blue-500/30">
+<section id="about" class="section">
+    <div class="wrap">
+        <div class="fh">~/boitumelo/<b>about.md</b></div>
+        <p class="fc"># who's behind the commits</p>
+        <div class="about">
+            <div class="portrait-wrap">
+                <div class="portrait-ring"></div>
+                <img src="Profile_Picture_2.jpeg" alt="Boitumelo Matome Thobejane" class="portrait">
+            </div>
             <div>
-                <p class="text-lg text-gray-300 mb-4">I'm a dedicated software developer with a flair for building intuitive, high-impact applications. My expertise spans frontend and backend technologies, delivering seamless user experiences.</p>
-                <p class="text-lg text-gray-300 mb-6">With a National Diploma in Computer Science from Tshwane University of Technology, I’ve developed projects like employee management systems and educational tools, always striving for excellence.</p>
-                <a href="/Curriculum_Vitae_of_Boitumelo_Thobejane.pdf" download class="cta-button inline-block font-semibold">Download Resume</a>
+                <p>I'm a Computer Science graduate with almost two years of practical experience across software development, web development and technical support. Most of that time has been at Investhood IT 2.0 in Midrand, working inside real project teams on applications that have users.</p>
+                <p>I work across the whole stack — Java and Spring Boot on the back end, React and Tailwind on the front, MySQL and MongoDB underneath — and I'm comfortable in the unglamorous parts too: writing the queries, fixing the auth flow, chasing a bug through three layers, testing it, and pushing it live.</p>
+                <p>Outside of that I run a small freelance practice building websites for businesses around Phalaborwa and Namakgale — hardware suppliers, a church, restaurants, schools. Those projects taught me the part no tutorial covers: talking to a client who doesn't speak in tickets, and turning what they mean into what I build. I also do hands-on hardware work, from opening a laptop to swapping RAM and drives.</p>
+
+                <div class="edu">
+                    <div class="edu-item">
+                        <b>National Diploma in Computer Science</b>
+                        <span>Tshwane University of Technology · completed 2026</span>
+                    </div>
+                    <div class="edu-item">
+                        <b>Certification in Artificial Intelligence in the 4IR</b>
+                        <span>professional certification</span>
+                    </div>
+                    <div class="edu-item">
+                        <b>National Senior Certificate</b>
+                        <span>ASC Phalaborwa · 2019</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Skills Section -->
-<section id="skills" class="py-20 section-bg" aria-labelledby="skills-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="skills-heading" class="text-3xl font-bold text-center mb-12 gradient-text">My Skills</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center p-6 project-card">
-                <div class="text-4xl mb-4">💻</div>
-                <h3 class="text-xl font-semibold text-white">Frontend</h3>
-                <p class="text-gray-400">HTML, CSS, JavaScript, React</p>
+<section id="skills" class="section" style="background:linear-gradient(180deg,transparent,rgba(15,15,45,.4),transparent)">
+    <div class="wrap">
+        <div class="fh">~/boitumelo/<b>skills.json</b></div>
+        <p class="fc">// grouped by what I'd actually reach for on a task</p>
+        <div class="skill-grid">
+            <div class="skill-block">
+                <h3>"languages"</h3>
+                <div class="pills"><span class="pill">Java</span><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">PHP</span><span class="pill">C#</span><span class="pill">SQL</span></div>
             </div>
-            <div class="text-center p-6 project-card">
-                <div class="text-4xl mb-4">🛠️</div>
-                <h3 class="text-xl font-semibold text-white">Backend</h3>
-                <p class="text-gray-400">Node.js, Java, Python, Kotlin</p>
+            <div class="skill-block">
+                <h3>"frontend"</h3>
+                <div class="pills"><span class="pill">React</span><span class="pill">Tailwind CSS</span><span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">Responsive UI</span></div>
             </div>
-            <div class="text-center p-6 project-card">
-                <div class="text-4xl mb-4">🗄️</div>
-                <h3 class="text-xl font-semibold text-white">Databases</h3>
-                <p class="text-gray-400">MongoDB, MySQL, PostgreSQL, Xampp</p>
+            <div class="skill-block">
+                <h3>"backend"</h3>
+                <div class="pills"><span class="pill">Spring Boot</span><span class="pill">REST APIs</span><span class="pill">Authentication</span><span class="pill">OTP &amp; security</span><span class="pill">OOP</span></div>
             </div>
-            <div class="text-center p-6 project-card">
-                <div class="text-4xl mb-4">🚀</div>
-                <h3 class="text-xl font-semibold text-white">Tools</h3>
-                <p class="text-gray-400">Git, IntelliJ IDEA, VS Code, AWS</p>
+            <div class="skill-block">
+                <h3>"databases"</h3>
+                <div class="pills"><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">Database design</span><span class="pill">SQL queries</span></div>
+            </div>
+            <div class="skill-block">
+                <h3>"tooling"</h3>
+                <div class="pills"><span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">IntelliJ IDEA</span><span class="pill">MySQL Workbench</span><span class="pill">Netlify</span></div>
+            </div>
+            <div class="skill-block">
+                <h3>"it_support"</h3>
+                <div class="pills"><span class="pill">Hardware troubleshooting</span><span class="pill">RAM &amp; drive replacement</span><span class="pill">Basic networking</span><span class="pill">Software diagnostics</span></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Experience Section -->
-<section id="experience" class="py-20 section-bg" aria-labelledby="experience-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="experience-heading" class="text-3xl font-bold text-center mb-12 gradient-text">Experience</h2>
-        <div class="space-y-8">
-            <div class="experience-card p-8">
-                <h3 class="text-xl font-semibold text-white mb-2">Software Developer Intern</h3>
-                <p class="text-gray-400 mb-2">Investhood IT | October 2024 - October 2025</p>
-                <ul class="list-disc list-inside text-gray-400">
-                    <li>Developed responsive web applications using HTML, CSS, JavaScript, and React.</li>
-                    <li>Designed and implemented RESTful APIs, enhancing system efficiency.</li>
-                    <li>Optimized database performance with MySQL Workbench.</li>
+<section id="work" class="section">
+    <div class="wrap">
+        <div class="fh">~/boitumelo/<b>work/</b></div>
+        <p class="fc">// three production applications — open one to see what I actually did</p>
+
+        <div class="cases">
+            <details class="case" open>
+                <summary>
+                    <span class="case-idx">01</span>
+                    <div class="case-h">
+                        <h3>Grade Genius</h3>
+                        <p>Educational platform for school revision and learning, built with a team of eight.</p>
+                    </div>
+                    <div class="case-badges">
+                        <span class="badge-live">live</span>
+                        <svg class="chev" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </summary>
+                <div class="case-body">
+                    <div class="case-cols">
+                        <div class="case-col">
+                            <h4>the problem</h4>
+                            <p>Learners needed one trustworthy place to revise — which means accounts have to be secure, and the interface has to work at 11pm on a cheap phone.</p>
+                        </div>
+                        <div class="case-col">
+                            <h4>what I built</h4>
+                            <ul>
+                                <li>Login and session flow</li>
+                                <li>OTP verification</li>
+                                <li>Password and security checks</li>
+                                <li>Light and dark mode</li>
+                                <li>UI and page functionality fixes</li>
+                            </ul>
+                        </div>
+                        <div class="case-col">
+                            <h4>stack &amp; outcome</h4>
+                            <p style="margin-bottom:.6rem"><span class="pill">PHP</span> <span class="pill">Python</span></p>
+                            <p>Live in production and still being developed by the team.</p>
+                        </div>
+                    </div>
+                    <div class="case-foot">
+                        <a href="https://www.gradegenius.org" target="_blank" rel="noopener" class="lnk">Visit the live site
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </details>
+
+            <details class="case">
+                <summary>
+                    <span class="case-idx">02</span>
+                    <div class="case-h">
+                        <h3>Grade 12 Revision Hub</h3>
+                        <p>Full-stack revision platform with resources, quizzes and digital question papers.</p>
+                    </div>
+                    <div class="case-badges">
+                        <svg class="chev" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </summary>
+                <div class="case-body">
+                    <div class="case-cols">
+                        <div class="case-col">
+                            <h4>the problem</h4>
+                            <p>Matric learners needed past papers, quizzes and resources in one place — with an admin side staff could manage without calling a developer.</p>
+                        </div>
+                        <div class="case-col">
+                            <h4>what I built</h4>
+                            <ul>
+                                <li>Learner-facing and admin functionality</li>
+                                <li>Database tables and SQL queries</li>
+                                <li>API integration, front to back</li>
+                                <li>Testing and bug fixing</li>
+                            </ul>
+                        </div>
+                        <div class="case-col">
+                            <h4>stack &amp; outcome</h4>
+                            <p style="margin-bottom:.6rem"><span class="pill">Java</span> <span class="pill">Spring Boot</span> <span class="pill">React</span> <span class="pill">Tailwind</span> <span class="pill">MySQL</span></p>
+                            <p>Built in a team of six, split across two repositories.</p>
+                        </div>
+                    </div>
+                    <div class="case-foot">
+                        <a href="https://github.com/Boitumelo234/TheGrade12RevisionHub-Frontend" target="_blank" rel="noopener" class="lnk">Frontend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                        <a href="https://github.com/Boitumelo234/TheGrade12RevisionHub-Backend" target="_blank" rel="noopener" class="lnk">Backend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </details>
+
+            <details class="case">
+                <summary>
+                    <span class="case-idx">03</span>
+                    <div class="case-h">
+                        <h3>Municipal Citizen App</h3>
+                        <p>Citizen-service application for reporting municipal issues and managing complaints.</p>
+                    </div>
+                    <div class="case-badges">
+                        <span class="badge-live">presented</span>
+                        <svg class="chev" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </summary>
+                <div class="case-body">
+                    <div class="case-cols">
+                        <div class="case-col">
+                            <h4>the problem</h4>
+                            <p>Residents report a burst pipe or a broken streetlight and hear nothing back. The app gives every complaint an identity: logged, assigned, tracked, closed.</p>
+                        </div>
+                        <div class="case-col">
+                            <h4>what I built</h4>
+                            <ul>
+                                <li>Citizen-side reporting flow</li>
+                                <li>Staff complaint and task handling</li>
+                                <li>Database tables and queries</li>
+                                <li>API-connected front and back end</li>
+                                <li>Testing and bug fixing</li>
+                            </ul>
+                        </div>
+                        <div class="case-col">
+                            <h4>stack &amp; outcome</h4>
+                            <p style="margin-bottom:.6rem"><span class="pill">Java</span> <span class="pill">Spring Boot</span> <span class="pill">React</span> <span class="pill">Tailwind</span> <span class="pill">MySQL</span></p>
+                            <p>Built in a team of five. I presented the finished application to the project coordinator.</p>
+                        </div>
+                    </div>
+                    <div class="case-foot">
+                        <a href="https://github.com/Boitumelo234/citizen-services-web-app-frontend" target="_blank" rel="noopener" class="lnk">Frontend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                        <a href="https://github.com/Boitumelo234/citizen-services-web-app-backend" target="_blank" rel="noopener" class="lnk">Backend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </details>
+
+            <details class="case">
+                <summary>
+                    <span class="case-idx">04</span>
+                    <div class="case-h">
+                        <h3>Grade 3 Capitalization App</h3>
+                        <p>An interactive drill that teaches Grade 3 learners capitalization rules.</p>
+                    </div>
+                    <div class="case-badges">
+                        <svg class="chev" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </summary>
+                <div class="case-body">
+                    <div class="case-cols">
+                        <div class="case-col">
+                            <h4>the problem</h4>
+                            <p>Young learners needed practice with capitalization that felt like a game, not a worksheet — and had to run on the devices schools already have.</p>
+                        </div>
+                        <div class="case-col">
+                            <h4>what I built</h4>
+                            <ul>
+                                <li>Interactive capitalization drills</li>
+                                <li>Instant feedback loop for learners</li>
+                                <li>Lightweight, browser-only build</li>
+                                <li>UI polish and testing</li>
+                            </ul>
+                        </div>
+                        <div class="case-col">
+                            <h4>stack &amp; outcome</h4>
+                            <p style="margin-bottom:.6rem"><span class="pill">HTML</span> <span class="pill">CSS</span> <span class="pill">JavaScript</span></p>
+                            <p>Delivered as part of the Investhood IT project portfolio.</p>
+                        </div>
+                    </div>
+                    <div class="case-foot">
+                        <a href="https://github.com/Shupe-hub/Grade3Platform" target="_blank" rel="noopener" class="lnk">View repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- FINAL YEAR PROJECT (standalone, visually marked) -->
+        <p class="fc" style="margin:3.5rem 0 1.6rem">// final-year project — Tshwane University of Technology</p>
+        <div class="cases">
+            <details class="case">
+                <summary>
+                    <span class="case-idx">FY</span>
+                    <div class="case-h">
+                        <h3>Employee Management System</h3>
+                        <p>Records, schedules and payroll in one internal tool — built as my final-year project.</p>
+                    </div>
+                    <div class="case-badges">
+                        <span class="badge-final">final year</span>
+                        <svg class="chev" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </summary>
+                <div class="case-body">
+                    <div class="case-cols">
+                        <div class="case-col">
+                            <h4>the problem</h4>
+                            <p>Small organisations often run HR on spreadsheets. The goal was one web tool that handled records, schedules and payroll without needing a dedicated admin.</p>
+                        </div>
+                        <div class="case-col">
+                            <h4>what I built</h4>
+                            <ul>
+                                <li>Employee records and CRUD</li>
+                                <li>Schedule and shift management</li>
+                                <li>Payroll calculations and views</li>
+                                <li>Auth and role-based access</li>
+                            </ul>
+                        </div>
+                        <div class="case-col">
+                            <h4>stack &amp; outcome</h4>
+                            <p style="margin-bottom:.6rem"><span class="pill">HTML</span> <span class="pill">CSS</span> <span class="pill">JavaScript</span> <span class="pill">Java</span></p>
+                            <p>Completed as my final-year project at Tshwane University of Technology.</p>
+                        </div>
+                    </div>
+                    <div class="case-foot">
+                        <a href="https://github.com/Boitumelo234/BrightSolutionsEMS" target="_blank" rel="noopener" class="lnk">View repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- PERSONAL / CLIENT WORK -->
+        <p class="fc" style="margin:3.5rem 0 1.6rem">// personal builds &amp; client work</p>
+        <div class="fl-grid">
+            <article class="fl">
+<!--                <div class="fl-thumb"><img src="/emsimage.jpeg" alt="Vanguard Energy" loading="lazy"></div>-->
+                <div class="fl-body">
+                    <div class="fl-path">// vanguard-energy</div>
+                    <h3>Vanguard Energy</h3>
+                    <p>Full-stack build for an energy-sector client — separate front-end and back-end repositories.</p>
+                    <div class="fl-tags"><span class="fl-tag">React</span><span class="fl-tag">Backend</span><span class="fl-tag">Full-stack</span></div>
+                    <div class="fl-links">
+                        <a href="https://github.com/Boitumelo234/vanguard-energy-f.git" target="_blank" rel="noopener" class="lnk">Frontend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                        <a href="https://github.com/Boitumelo234/vanguard-energy-b.git" target="_blank" rel="noopener" class="lnk">Backend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="fl">
+                <div class="fl-body">
+                    <div class="fl-path">// business-toolkit</div>
+                    <h3>Business Toolkit</h3>
+                    <p>A multi-tenant SaaS platform giving small businesses a set of tools in one place — built as a client-requested SaaS product, with separate front-end and back-end repositories.</p>
+                    <div class="fl-tags"><span class="fl-tag">SaaS</span><span class="fl-tag">React</span><span class="fl-tag">Backend</span><span class="fl-tag">Full-stack</span></div>
+                    <div class="fl-links">
+                        <a href="https://github.com/Boitumelo234/business-toolkit-f.git" target="_blank" rel="noopener" class="lnk">Frontend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                        <a href="https://github.com/Boitumelo234/business-toolkit-b.git" target="_blank" rel="noopener" class="lnk">Backend repo
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Live client sites (deployed on Netlify / Vercel) -->
+            <article class="fl">
+<!--                <div class="fl-thumb"><img src="/restaurantsimage.jpeg" alt="Bee's Bake" loading="lazy"></div>-->
+                <div class="fl-body">
+                    <div class="fl-path">// bees-bake</div>
+                    <h3>Bee's Bake</h3>
+                    <p>Live bakery website for a local client — deployed and awaiting final hosting decision.</p>
+                    <div class="fl-tags"><span class="fl-tag">HTML</span><span class="fl-tag">CSS</span><span class="fl-tag">JavaScript</span></div>
+                    <div class="fl-links">
+                        <a href="https://beesbakeweb.netlify.app/" target="_blank" rel="noopener" class="lnk">Visit live site
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="fl">
+<!--                <div class="fl-thumb"><img src="/schoolimage.jpeg" alt="TMJ Fabrication and Aluminium" loading="lazy"></div>-->
+                <div class="fl-body">
+                    <div class="fl-path">// tmj-fabrication-aluminium</div>
+                    <h3>TMJ Fabrication &amp; Aluminium Installation</h3>
+                    <p>Live site for a fabrication and aluminium installation business — approved by the client, awaiting funding to move to final hosting.</p>
+                    <div class="fl-tags"><span class="fl-tag">HTML</span><span class="fl-tag">CSS</span><span class="fl-tag">JavaScript</span></div>
+                    <div class="fl-links">
+                        <a href="https://tmjwebsite.vercel.app/" target="_blank" rel="noopener" class="lnk">Visit live site
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="fl">
+<!--                <div class="fl-thumb"><img src="/capimage.png" alt="Qokhu Mal Pty Ltd" loading="lazy"></div>-->
+                <div class="fl-body">
+                    <div class="fl-path">// qokhu-mal</div>
+                    <h3>Qokhu Mal Pty Ltd</h3>
+                    <p>Live site for Qokhu Mal Pty Ltd — approved by the client, awaiting funding to move to final hosting.</p>
+                    <div class="fl-tags"><span class="fl-tag">HTML</span><span class="fl-tag">CSS</span><span class="fl-tag">JavaScript</span></div>
+                    <div class="fl-links">
+                        <a href="https://qokhumalweb.netlify.app/" target="_blank" rel="noopener" class="lnk">Visit live site
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- 10+ local websites summary block -->
+        <div class="client-block">
+            <h3>// 10+ local websites for businesses around Phalaborwa &amp; Namakgale</h3>
+            <p>Over the past two years I've designed and delivered more than ten websites for local clients — hardware suppliers, churches, restaurants, schools and small businesses. Three are client-approved and ready to move to final hosting as soon as funding is in place. The rest are either in discussion or pending final sign-off, so they're not listed individually here yet.</p>
+            <ul class="client-list">
+                <li>
+                    <span class="client-name">Bee's Bake</span>
+                    <span class="client-note">bakery website</span>
+                    <span class="client-status st-approved">approved · awaiting hosting</span>
+                </li>
+                <li>
+                    <span class="client-name">TMJ Fabrication &amp; Aluminium</span>
+                    <span class="client-note">fabrication &amp; aluminium</span>
+                    <span class="client-status st-approved">approved · awaiting hosting</span>
+                </li>
+                <li>
+                    <span class="client-name">Qokhu Mal Pty Ltd</span>
+                    <span class="client-note">business website</span>
+                    <span class="client-status st-approved">approved · awaiting hosting</span>
+                </li>
+                <li>
+                    <span class="client-name">Other local businesses</span>
+                    <span class="client-note">in discussion / pending final sign-off</span>
+                    <span class="client-status st-discussion">not listed yet</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="experience" class="section" style="background:linear-gradient(180deg,transparent,rgba(15,15,45,.4),transparent)">
+    <div class="wrap">
+        <div class="fh">~/boitumelo/<b>experience.log</b></div>
+        <p class="fc">$ git log --author="Boitumelo" --oneline</p>
+
+        <div class="commits">
+            <div class="commit">
+                <div class="commit-h"><span class="hash">a1e4f92</span><b>Software Developer Intern</b><span class="when">Oct 2024 &rarr; Aug 2026</span></div>
+                <div class="where">Investhood IT 2.0 · Midrand, Johannesburg</div>
+                <ul class="diff">
+                    <li>Contributed to three applications — Grade Genius, Grade 12 Revision Hub and the Municipal Citizen App — in teams of roughly 8, 6 and 5</li>
+                    <li>Also worked across four further Investhood IT builds: Accommodation Booking System, School Website and the Grade 3 Capitalization App</li>
+                    <li>Developed front-end and back-end functionality: UI features, application logic, database tables and SQL queries</li>
+                    <li>Built Grade Genius authentication and security: login, OTP verification, password and security checks</li>
+                    <li>Connected application components through APIs across learner, citizen, staff and admin functionality</li>
+                    <li>Performed debugging, testing and technical troubleshooting across all applications</li>
+                    <li>Used Git and GitHub for source control and worked with the team on requirements, implementation and testing</li>
                 </ul>
             </div>
-            <div class="experience-card p-8">
-                <h3 class="text-xl font-semibold text-white mb-2">Freelance Developer</h3>
-                <p class="text-gray-400 mb-2">Self-Employed | October 2025 - Present</p>
-                <ul class="list-disc list-inside text-gray-400">
-                    <li>Created tailored web solutions for clients using React and Node.js.</li>
-                    <li>Integrated secure payment gateways and authentication APIs.</li>
-                    <li>Provided maintenance and feature updates for live projects.</li>
+
+            <div class="commit">
+                <div class="commit-h"><span class="hash">7c3d0b1</span><b>Freelance Web Developer</b><span class="when">2026 &rarr; Present</span></div>
+                <div class="where">Client projects · Limpopo &amp; remote</div>
+                <ul class="diff">
+                    <li>Designed and delivered 10+ websites for local clients and small businesses</li>
+                    <li>Built responsive sites in HTML, CSS, JavaScript and React depending on the project</li>
+                    <li>Worked directly with clients to gather requirements, implement changes and hand over finished work</li>
+                    <li>Ran projects independently from planning through development, testing and deployment</li>
+                    <li>Deployed on Netlify and Vercel, and provided ongoing updates and troubleshooting support</li>
+                    <li>Three client sites — Bee's Bake, TMJ Fabrication &amp; Aluminium, and Qokhu Mal Pty Ltd — are approved and awaiting final hosting</li>
+                </ul>
+            </div>
+
+            <div class="commit">
+                <div class="commit-h"><span class="hash">f92e1aa</span><b>IT Support &amp; Hardware</b><span class="when">Ongoing</span></div>
+                <div class="where">Hands-on practical experience</div>
+                <ul class="diff">
+                    <li>Performed laptop hardware maintenance, opening devices and replacing components</li>
+                    <li>Replaced and upgraded RAM and storage drives, handling hardware troubleshooting</li>
+                    <li>Applied software troubleshooting to diagnose computer and application issues</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Projects Section -->
-<section id="projects" class="py-20 section-bg" aria-labelledby="projects-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="projects-heading" class="text-3xl font-bold text-center mb-12 gradient-text">My Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="project-card overflow-hidden">
-                <img src="\emsimage.jpeg" alt="Employee Management System" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Employee Management System</h3>
-                    <p class="text-gray-400 mb-4">A web-based system built with React and Node.js to manage employee records, schedules, and payroll efficiently.</p>
-                    <a href="https://github.com/Boitumelo234/BrightSolutionsEMS" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">View Project</a>
-                </div>
+<section id="contact" class="section">
+    <div class="wrap">
+        <div class="fh">~/boitumelo/<b>contact.sh</b></div>
+        <p class="fc">#!/bin/bash — let's build something</p>
+
+        <div class="contact">
+            <div>
+                <p class="intro">A project, a role, or just a question about something I built — my inbox is open.</p>
+                <a href="mailto:boitumelomatome2@gmail.com" class="cmdline"><span class="p">$</span> mail boitumelomatome2@gmail.com</a>
+                <a href="tel:+27784657112" class="cmdline"><span class="p">$</span> call 078 465 7112</a>
+                <a href="https://github.com/Boitumelo234" target="_blank" rel="noopener" class="cmdline"><span class="p">$</span> open github.com/Boitumelo234</a>
+                <a href="https://www.linkedin.com/in/boitumelo-thobejane-a71877283" target="_blank" rel="noopener" class="cmdline"><span class="p">$</span> open linkedin.com/in/boitumelo-thobejane</a>
+                <a href="/Boitumelo_Thobejane_CV.pdf" download class="cmdline"><span class="p">$</span> curl -O cv.pdf</a>
+                <p class="refs"># based in Thembisa, Johannesburg<br># references available on request</p>
             </div>
-            <div class="project-card overflow-hidden">
-                <img src="\gr12appimage.png" alt="Grade 12 Application" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Grade 12 Application</h3>
-                    <p class="text-gray-400 mb-4">A Python-based tool with a Django backend to assist Grade 12 students with study resources and progress tracking.</p>
-                    <a href="https://github.com/Shupe-hub/Grade-12-Application-Final" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">View Project</a>
-                </div>
-            </div>
-            <div class="project-card overflow-hidden">
-                <img src="\accomodationimage.jpeg" alt="Accommodation Booking System" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Accommodation Booking System</h3>
-                    <p class="text-gray-400 mb-4">A mobile-responsive platform built with Next.js and MongoDB for seamless accommodation bookings.</p>
-                    <a href="https://github.com/Shupe-hub/Accommodation-Finding-App3" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">View Project</a>
-                </div>
-            </div>
-            <div class="project-card overflow-hidden">
-                <img src="\restaurantsimage.jpeg" alt="Restaurant Website" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Restaurant Website</h3>
-                    <p class="text-gray-400 mb-4">A dynamic website built with React and Firebase, featuring menu displays, online reservations, and customer reviews.</p>
-                    <a href="https://github.com/Boitumelo234/BeefChickGrilledWebsite" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">View Project</a>
-                </div>
-            </div>
-            <div class="project-card overflow-hidden">
-                <img src="\schoolimage.jpeg" alt="School Website" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">School Website</h3>
-                    <p class="text-gray-400 mb-4">A comprehensive website developed with Next.js and PostgreSQL, offering student portals, event calendars, and administrative tools.</p>
-                    <a href="https://github.com/Boitumelo234/AllSaintsCollegePhalaborwaWebsite" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">View Project</a>
-                </div>
-            </div>
-            <div class="project-card overflow-hidden">
-                <img src="\capimage.png" alt="Grade 3 Capitalization App" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Grade 3 Capitalization App</h3>
-                    <p class="text-gray-400 mb-4">An interactive web app using HTML, CSS, and JavaScript to help Grade 3 learners practice capitalization rules.</p>
-                    <a href="https://github.com/Shupe-hub/Grade3Platform" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">View Project</a>
-                </div>
+
+            <div class="form-card">
+                <form id="cform">
+                    <div class="row">
+                        <label class="lbl" for="name">NAME<i>=</i></label>
+                        <input class="inp" id="name" name="name" type="text" required placeholder="Your name">
+                    </div>
+                    <div class="row">
+                        <label class="lbl" for="email">EMAIL<i>=</i></label>
+                        <input class="inp" id="email" name="email" type="email" required placeholder="you@example.com">
+                    </div>
+                    <div class="row">
+                        <label class="lbl" for="message">MESSAGE<i>=</i></label>
+                        <textarea class="ta" id="message" name="message" required placeholder="Tell me what you're working on..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-p" style="width:100%;justify-content:center" id="sbtn">Send message</button>
+                    <p class="fstatus" id="fstatus" role="status" aria-live="polite"></p>
+                </form>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Achievements Section -->
-<!--<section id="achievements" class="py-20 section-bg" aria-labelledby="achievements-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="achievements-heading" class="text-3xl font-bold text-center mb-12 gradient-text">Achievements & Testimonials</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="project-card p-6">
-                <p class="text-lg text-gray-300 italic mb-4">"Boitumelo’s innovative approach to problem-solving elevated our project outcomes significantly."</p>
-                <p class="text-white font-semibold">Investhood IT, Software Developer</p>
-            </div>
-            <div class="project-card p-6">
-                <p class="text-lg text-gray-300 mb-4">🏆 Dean’s Merit Award</p>
-                <p class="text-gray-300">Received at Tshwane University of Technology for academic excellence in Computer Science.</p>
-            </div>
-        </div>
-    </div>
-</section>-->
-
-<!-- Contact Section -->
-<section id="contact" class="py-20 section-bg" aria-labelledby="contact-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 id="contact-heading" class="text-3xl font-bold mb-12 gradient-text">Get in Touch</h2>
-        <p class="text-lg text-gray-300 mb-8">Ready to collaborate? Let’s bring your ideas to life!</p>
-        <div class="max-w-lg mx-auto">
-            <form action="https://formspree.io/f/mldbnekd" method="POST" class="space-y-4">
-                <div>
-                    <label for="name" class="form-label block text-sm">Name</label>
-                    <input type="text" id="name" name="name" required class="form-input mt-1 block w-full" aria-required="true">
-                </div>
-                <div>
-                    <label for="email" class="form-label block text-sm">Email</label>
-                    <input type="email" id="email" name="email" required class="form-input mt-1 block w-full" aria-required="true">
-                </div>
-                <div>
-                    <label for="message" class="form-label block text-sm">Message</label>
-                    <textarea id="message" name="message" rows="4" required class="form-input form-textarea mt-1 block w-full" aria-required="true"></textarea>
-                </div>
-                <button type="submit" class="contact-button inline-block font-semibold">Send Message</button>
-            </form>
-        </div>
-        <div class="flex justify-center space-x-6 mt-8">
-            <a href="mailto:boitumelomatome2@gmail.com" class="social-icon" aria-label="Email Boitumelo">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                </svg>
-            </a>
-            <a href="https://github.com/Boitumelo234" class="social-icon" aria-label="Boitumelo's GitHub">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.12-1.47-1.12-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.92 0-1.08.38-1.97 1.01-2.66-.1-.25-.45-1.26.1-2.63 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.38.1 2.63.63.69 1.01 1.58 1.01 2.66 0 3.83-2.33 4.67-4.56 4.92.36.31.56.94.56 1.53v2.26c0 .28.16.61.67.5A10.02 10.02 0 0022 12c0-5.52-4.48-10-10-10z"/>
-                </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/boitumelo-thobejane-a71877283" class="social-icon" aria-label="Boitumelo's LinkedIn">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-2.5 15.5v-5.3c0-2.9-1.5-4.3-3.5-4.3-1.6 0-2.3.9-2.7 1.5v-1.6H7v9.7h3.3v-5.4c0-.7.5-1.3 1.2-1.3.7 0 1.2.6 1.2 1.3v5.4h3.3zM6.8 8.4c0 1-.8 1.8-1.8 1.8S3.2 9.4 3.2 8.4c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8zm1.5 10.1V9.8H5v8.7h3.3z"/>
-                </svg>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-transparent text-gray-300 py-6" aria-label="Footer">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p>© 2025 Boitumelo Thobejane. All rights reserved.</p>
+<footer class="statusbar">
+    <div class="wrap sb">
+        <div style="display:flex;align-items:center;gap:.55rem"><span class="dot"></span>available for work</div>
+        <div>main <span class="sep">·</span> UTF-8 <span class="sep">·</span> Johannesburg, ZA</div>
+        <div>© 2026 Boitumelo Thobejane <span class="sep">·</span> <a href="https://github.com/Boitumelo234" target="_blank" rel="noopener">GitHub</a> <span class="sep">·</span> <a href="https://www.linkedin.com/in/boitumelo-thobejane-a71877283" target="_blank" rel="noopener">LinkedIn</a></div>
     </div>
 </footer>
 
+<button class="totop" id="totop" aria-label="Back to top">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="pal-box">
+        <input class="pal-in" id="palIn" placeholder="Jump to a section or action..." autocomplete="off" spellcheck="false">
+        <div class="pal-list" id="palList"></div>
+    </div>
+</div>
+
 <script>
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-            // Close mobile menu if open
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.innerHTML = `<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>`;
-        });
-    });
+    (function(){
+        'use strict';
 
-    // Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    mobileMenuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        const isActive = mobileMenu.classList.contains('active');
-        mobileMenuToggle.innerHTML = isActive
-            ? `<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>`
-            : `<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>`;
-    });
+        var progress = document.getElementById('progress');
+        var totop = document.getElementById('totop');
+        var sections = document.querySelectorAll('section[id]');
+        var tabs = document.querySelectorAll('.tab');
 
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        function onScroll(){
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+            totop.classList.toggle('show', window.scrollY > 700);
+            var cur = 'home';
+            sections.forEach(function(s){ if (window.scrollY >= s.offsetTop - 150) cur = s.id; });
+            tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.s === cur); });
         }
-    });
+        window.addEventListener('scroll', onScroll, {passive:true});
+        window.addEventListener('resize', onScroll);
+        onScroll();
+        totop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 
-    // Active link highlighting
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (window.scrollY >= sectionTop - 60) {
-                current = section.getAttribute('id');
+        document.querySelectorAll('a[href^="#"]').forEach(function(a){
+            a.addEventListener('click', function(e){
+                var t = document.querySelector(this.getAttribute('href'));
+                if(!t) return;
+                e.preventDefault();
+                t.scrollIntoView({behavior:'smooth', block:'start'});
+            });
+        });
+
+        /* ── terminal ── */
+        var out = document.getElementById('termOut');
+        var body = document.getElementById('termBody');
+        var row = document.getElementById('inputRow');
+        var input = document.getElementById('termIn');
+        var chipsEl = document.getElementById('chips');
+        var PROMPT = '<span class="prompt"><span class="u">visitor</span>@boitumelo:~$</span>';
+
+        function line(text, cls){
+            var d = document.createElement('div');
+            d.className = 'tl' + (cls ? ' ' + cls : '');
+            d.innerHTML = text;
+            out.appendChild(d);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        function esc(s){
+            return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
+        var COMMANDS = {
+            help: function(){
+                line('Available commands:', 'acc');
+                line('  <span class="pur">whoami</span>      who I am, in one line');
+                line('  <span class="pur">about</span>       the longer version');
+                line('  <span class="pur">skills</span>      what I work with');
+                line('  <span class="pur">projects</span>    the three production apps');
+                line('  <span class="pur">experience</span>  where I have worked');
+                line('  <span class="pur">education</span>   qualifications');
+                line('  <span class="pur">contact</span>     how to reach me');
+                line('  <span class="pur">cv</span>          download my CV');
+                line('  <span class="pur">goto</span> [name] scroll to a section');
+                line('  <span class="pur">clear</span>       clear the screen');
+            },
+            whoami: function(){
+                line('boitumelo-matome-thobejane', 'ok');
+                line('junior software engineer, johannesburg, south africa', 'dim');
+            },
+            about: function(){
+                line('Computer Science graduate with almost two years of practical');
+                line('experience in software development, web development and support.');
+                line('');
+                line('Three applications shipped with real users at Investhood IT 2.0,');
+                line('and 10+ websites built for clients around Phalaborwa and Namakgale.');
+                line('Comfortable across the stack, and comfortable inside a laptop too.');
+            },
+            skills: function(){
+                line('languages   <span class="acc">Java, Python, JavaScript, PHP, C#, SQL</span>');
+                line('frontend    <span class="acc">React, Tailwind CSS, HTML5, CSS3</span>');
+                line('backend     <span class="acc">Spring Boot, REST APIs, auth and OTP</span>');
+                line('databases   <span class="acc">MySQL, MongoDB</span>');
+                line('tooling     <span class="acc">Git, GitHub, IntelliJ IDEA, Netlify</span>');
+                line('support     <span class="acc">hardware and software troubleshooting</span>');
+            },
+            projects: function(){
+                line('1. <span class="pur">Grade Genius</span> — PHP, Python  <span class="ok">[live]</span>');
+                line('   auth, OTP, security checks, light/dark mode');
+                line('   <a href="https://www.gradegenius.org" target="_blank" rel="noopener">gradegenius.org</a>');
+                line('2. <span class="pur">Grade 12 Revision Hub</span> — Java, Spring Boot, React, MySQL');
+                line('   resources, quizzes, digital question papers, learner + admin');
+                line('3. <span class="pur">Municipal Citizen App</span> — Java, Spring Boot, React, MySQL');
+                line('   issue reporting, complaint and task management for staff');
+                line('');
+                line('Plus four further Investhood IT builds, a final-year EMS,');
+                line('and personal builds: Vanguard Energy, Business Toolkit, and 10+ client sites.');
+                line('');
+                line('Type <span class="pur">goto work</span> for the full case studies.', 'dim');
+            },
+            experience: function(){
+                line('<span class="acc">Oct 2024 - Aug 2026</span>  Software Developer Intern, Investhood IT 2.0');
+                line('<span class="acc">2024 - present</span>      Freelance Web Developer, client projects');
+                line('<span class="acc">ongoing</span>             IT support and laptop hardware maintenance');
+            },
+            education: function(){
+                line('National Diploma in Computer Science — TUT, completed 2026');
+                line('Certification in Artificial Intelligence in the 4IR');
+                line('National Senior Certificate — ASC Phalaborwa, 2019');
+            },
+            contact: function(){
+                line('email     <a href="mailto:boitumelomatome2@gmail.com">boitumelomatome2@gmail.com</a>');
+                line('phone     <a href="tel:+27784657112">078 465 7112</a>');
+                line('github    <a href="https://github.com/Boitumelo234" target="_blank" rel="noopener">github.com/Boitumelo234</a>');
+                line('linkedin  <a href="https://www.linkedin.com/in/boitumelo-thobejane-a71877283" target="_blank" rel="noopener">boitumelo-thobejane</a>');
+            },
+            cv: function(){
+                line('downloading Curriculum_Vitae_of_Boitumelo_Thobejane.pdf ...', 'dim');
+                var a = document.createElement('a');
+                a.href = '/Boitumelo_Thobejane_CV.pdf';
+                a.setAttribute('download','');
+                document.body.appendChild(a); a.click(); a.remove();
+                line('done.', 'ok');
+            },
+            ls: function(){
+                line('<span class="acc">home.tsx  about.md  skills.json  work/  experience.log  contact.sh</span>');
+            },
+            clear: function(){ out.innerHTML = ''; }
+        };
+
+        var SECTIONS = ['home','about','skills','work','experience','contact'];
+
+        function gotoSection(arg){
+            var target = (arg || '').trim().toLowerCase();
+            if (SECTIONS.indexOf(target) === -1){
+                line('goto: unknown section "' + esc(target) + '". try: ' + SECTIONS.join(', '), 'warn');
+                return;
+            }
+            line('scrolling to #' + target + ' ...', 'dim');
+            var el = document.getElementById(target);
+            if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+
+        function run(raw){
+            var text = String(raw).trim();
+            line(PROMPT + ' ' + esc(text), 'cmd');
+            if (!text) return;
+            var parts = text.split(/\s+/);
+            var cmd = parts[0].toLowerCase();
+            var arg = parts.slice(1).join(' ');
+
+            if (cmd === 'goto' || cmd === 'cd'){ gotoSection(arg); }
+            else if (cmd === 'sudo'){ line('nice try. permission denied — but I respect the ambition.', 'warn'); }
+            else if (COMMANDS[cmd]){ COMMANDS[cmd](); }
+            else { line('command not found: ' + esc(cmd) + '  —  type <span class="pur">help</span>', 'warn'); }
+            if (cmd !== 'clear') line('');
+        }
+
+        var BOOT = [
+            {t: PROMPT + ' whoami', c:'cmd', d:520},
+            {t:'boitumelo-matome-thobejane', c:'ok', d:220},
+            {t:'junior software engineer, johannesburg, south africa', c:'dim', d:420},
+            {t:'', c:'', d:120},
+            {t: PROMPT + ' cat status.txt', c:'cmd', d:520},
+            {t:'3 production apps · 10+ client sites · ~2 years shipping', c:'acc', d:300},
+            {t:'currently: open to junior engineer and developer roles', c:'acc', d:420},
+            {t:'', c:'', d:140},
+            {t:'This terminal is real — type a command. Start with <span class="pur">help</span>.', c:'dim', d:200}
+        ];
+
+        var CHIPS = ['help','about','skills','projects','experience','contact','cv'];
+        var booted = false;
+
+        function renderChips(){
+            CHIPS.forEach(function(c){
+                var b = document.createElement('button');
+                b.className = 'chip';
+                b.type = 'button';
+                b.textContent = c;
+                b.addEventListener('click', function(){ run(c); input.focus(); });
+                chipsEl.appendChild(b);
+            });
+        }
+
+        function finishBoot(){
+            if (booted) return;
+            booted = true;
+            row.style.display = 'flex';
+            renderChips();
+        }
+
+        function boot(i){
+            if (i >= BOOT.length){ finishBoot(); return; }
+            line(BOOT[i].t, BOOT[i].c);
+            setTimeout(function(){ boot(i+1); }, BOOT[i].d);
+        }
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+            BOOT.forEach(function(s){ line(s.t, s.c); });
+            finishBoot();
+        } else {
+            setTimeout(function(){ boot(0); }, 500);
+        }
+
+        var hist = [], hIdx = 0;
+        input.addEventListener('keydown', function(e){
+            if (e.key === 'Enter'){
+                var v = input.value;
+                if (v.trim()){ hist.push(v); hIdx = hist.length; }
+                run(v);
+                input.value = '';
+            } else if (e.key === 'ArrowUp'){
+                if (hIdx > 0){ hIdx--; input.value = hist[hIdx]; e.preventDefault(); }
+            } else if (e.key === 'ArrowDown'){
+                if (hIdx < hist.length - 1){ hIdx++; input.value = hist[hIdx]; }
+                else { hIdx = hist.length; input.value = ''; }
+            } else if (e.key === 'Tab'){
+                e.preventDefault();
+                var cur = input.value.trim().toLowerCase();
+                if (!cur) return;
+                var names = Object.keys(COMMANDS).concat(['goto']);
+                var hit = names.filter(function(n){ return n.indexOf(cur) === 0; });
+                if (hit.length === 1) input.value = hit[0] + ' ';
             }
         });
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').slice(1) === current) {
-                link.classList.add('active');
-            }
+        body.addEventListener('click', function(e){
+            if (e.target.tagName === 'A') return;
+            if (booted) input.focus();
         });
-    });
+
+        /* ── command palette ── */
+        function jump(id){
+            var el = document.getElementById(id);
+            if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+
+        var PAL = [
+            {label:'Go to home', tag:'section', act:function(){ jump('home'); }},
+            {label:'Go to about', tag:'section', act:function(){ jump('about'); }},
+            {label:'Go to skills', tag:'section', act:function(){ jump('skills'); }},
+            {label:'Go to work', tag:'section', act:function(){ jump('work'); }},
+            {label:'Go to experience', tag:'section', act:function(){ jump('experience'); }},
+            {label:'Go to contact', tag:'section', act:function(){ jump('contact'); }},
+            {label:'Download CV', tag:'action', act:function(){ COMMANDS.cv(); }},
+            {label:'Email Boitumelo', tag:'action', act:function(){ window.location.href = 'mailto:boitumelomatome2@gmail.com'; }},
+            {label:'Open GitHub', tag:'link', act:function(){ window.open('https://github.com/Boitumelo234','_blank','noopener'); }},
+            {label:'Open LinkedIn', tag:'link', act:function(){ window.open('https://www.linkedin.com/in/boitumelo-thobejane-a71877283','_blank','noopener'); }},
+            {label:'Visit Grade Genius (live)', tag:'link', act:function(){ window.open('https://www.gradegenius.org','_blank','noopener'); }},
+            {label:'Visit Bee\'s Bake (live)', tag:'link', act:function(){ window.open('https://beesbakeweb.netlify.app/','_blank','noopener'); }},
+            {label:'Visit TMJ Fabrication (live)', tag:'link', act:function(){ window.open('https://tmjwebsite.vercel.app/','_blank','noopener'); }},
+            {label:'Visit Qokhu Mal (live)', tag:'link', act:function(){ window.open('https://qokhumalweb.netlify.app/','_blank','noopener'); }},
+            {label:'Focus the terminal', tag:'action', act:function(){ jump('home'); setTimeout(function(){ if(booted) input.focus(); }, 650); }}
+        ];
+
+        var palette = document.getElementById('palette');
+        var palIn = document.getElementById('palIn');
+        var palList = document.getElementById('palList');
+        var palSel = 0, palResults = PAL.slice();
+
+        function renderPal(){
+            palList.innerHTML = '';
+            if (!palResults.length){
+                palList.innerHTML = '<div class="pal-empty">No matches.</div>';
+                return;
+            }
+            palResults.forEach(function(item, i){
+                var d = document.createElement('div');
+                d.className = 'pal-item' + (i === palSel ? ' sel' : '');
+                d.innerHTML = '<span>' + item.label + '</span><span class="tag">' + item.tag + '</span>';
+                d.addEventListener('mouseenter', function(){ palSel = i; renderPal(); });
+                d.addEventListener('click', function(){ closePal(); item.act(); });
+                palList.appendChild(d);
+            });
+        }
+        function openPal(){
+            palette.classList.add('open');
+            palIn.value = ''; palResults = PAL.slice(); palSel = 0;
+            renderPal(); palIn.focus();
+        }
+        function closePal(){ palette.classList.remove('open'); }
+
+        palIn.addEventListener('input', function(){
+            var q = palIn.value.toLowerCase();
+            palResults = PAL.filter(function(p){ return p.label.toLowerCase().indexOf(q) !== -1; });
+            palSel = 0; renderPal();
+        });
+        palIn.addEventListener('keydown', function(e){
+            if (e.key === 'ArrowDown'){ e.preventDefault(); palSel = Math.min(palSel + 1, palResults.length - 1); renderPal(); }
+            else if (e.key === 'ArrowUp'){ e.preventDefault(); palSel = Math.max(palSel - 1, 0); renderPal(); }
+            else if (e.key === 'Enter'){ e.preventDefault(); var it = palResults[palSel]; if (it){ closePal(); it.act(); } }
+            else if (e.key === 'Escape'){ closePal(); }
+        });
+        palette.addEventListener('click', function(e){ if (e.target === palette) closePal(); });
+        document.getElementById('palBtn').addEventListener('click', openPal);
+        document.addEventListener('keydown', function(e){
+            if ((e.metaKey || e.ctrlKey) && e.key && e.key.toLowerCase() === 'k'){ e.preventDefault(); openPal(); }
+            if (e.key === 'Escape') closePal();
+        });
+
+        /* ── contact form ── */
+        var form = document.getElementById('cform');
+        var fstatus = document.getElementById('fstatus');
+        var sbtn = document.getElementById('sbtn');
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            sbtn.disabled = true;
+            fstatus.className = 'fstatus';
+            fstatus.textContent = '> sending...';
+            fetch('https://formspree.io/f/mldbnekd', {
+                method:'POST',
+                headers:{'Accept':'application/json'},
+                body:new FormData(form)
+            }).then(function(res){
+                if (res.ok){
+                    fstatus.className = 'fstatus ok';
+                    fstatus.textContent = '> message sent. I usually reply within a day.';
+                    form.reset();
+                } else {
+                    fstatus.className = 'fstatus err';
+                    fstatus.textContent = '> send failed. Email boitumelomatome2@gmail.com instead.';
+                }
+            })['catch'](function(){
+                fstatus.className = 'fstatus err';
+                fstatus.textContent = '> network error. Email boitumelomatome2@gmail.com instead.';
+            }).then(function(){ sbtn.disabled = false; });
+        });
+
+    })();
 </script>
 </body>
 </html>
